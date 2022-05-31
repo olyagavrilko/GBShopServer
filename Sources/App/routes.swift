@@ -14,4 +14,13 @@ func routes(_ app: Application) throws {
     
     let logoutController = LogoutController()
     app.get("logout", use: logoutController.logout)
+    
+    let getReviewsController = GetReviewsController()
+    app.get("reviews", use: getReviewsController.getReviews)
+    
+    let addReviewController = AddReviewController()
+    app.post("add-review", use: addReviewController.addReview)
+    
+    let removeReviewController = RemoveReviewController()
+    app.delete("remove-review", use: removeReviewController.removeReview)
 }
