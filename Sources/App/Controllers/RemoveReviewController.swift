@@ -11,7 +11,7 @@ class RemoveReviewController {
     
     func removeReview(_ req: Request) throws -> EventLoopFuture<RemoveReviewResponse> {
         
-        guard let body = try? req.content.decode(RemoveReviewRequest.self) else {
+        guard let body = try? req.query.decode(RemoveReviewRequest.self) else {
             throw Abort(.badRequest)
         }
         
