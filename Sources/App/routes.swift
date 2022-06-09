@@ -9,18 +9,20 @@ func routes(_ app: Application) throws {
         return "Hello, world!"
     }
     
-    let loginController = LoginController()
-    app.get("login", use: loginController.login)
+    let authController = AuthController()
+    app.get("login", use: authController.login)
+    app.get("logout", use: authController.logout)
     
-    let logoutController = LogoutController()
-    app.get("logout", use: logoutController.logout)
+    let catalogController = CatalogController()
+    app.get("catalog", use: catalogController.getProductList)
     
-    let getReviewsController = GetReviewsController()
-    app.get("reviews", use: getReviewsController.getReviews)
+    let reviewsController = ReviewController()
+    app.get("reviews", use: reviewsController.getReviews)
+    app.post("review", use: reviewsController.addReview)
+    app.delete("review", use: reviewsController.deleteReview)
     
-    let addReviewController = AddReviewController()
-    app.post("add-review", use: addReviewController.addReview)
-    
-    let removeReviewController = RemoveReviewController()
-    app.delete("remove-review", use: removeReviewController.removeReview)
+    let cartController = CartController()
+    app.post("cart", use: cartController.addToBasket)
+    app.delete("cart", use: cartController.deleteFromBasket)
+    app.get("cart", use: cartController.buy)
 }
